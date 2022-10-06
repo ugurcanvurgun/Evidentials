@@ -1,8 +1,3 @@
-// This is a simple demo script, feel free to edit or delete it
-// Find a tutorial and the list of availalbe elements at:
-// https://www.pcibex.net/documentation/
-//Updated 10/31/2021
-
 PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
