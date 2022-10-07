@@ -7,7 +7,7 @@ Sequence( "intro", "trainInstr", "training", "prodInstr", "production", "compIns
 //Sequence("demographics", "language", SendResults() , "bye" )
    
 newTrial( "intro" ,          
-    newImage("consent", "consent.jpg") 
+    newImage("consent", "https://static.wixstatic.com/media/7cb05b_a0f9c63082d443448b6f3b68745e62fa~mv2.jpg") 
             .size(750,1000)   
         ,
         newCanvas("canvas1", 750,1100)
