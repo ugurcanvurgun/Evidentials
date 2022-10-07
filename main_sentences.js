@@ -1,3 +1,8 @@
+// This is a simple demo script, feel free to edit or delete it
+// Find a tutorial and the list of availalbe elements at:
+// https://www.pcibex.net/documentation/
+//Updated 10/31/2021
+
 PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
@@ -5,8 +10,8 @@ PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 Sequence( "intro", "trainInstr", "training", "prodInstr", "production", "compInstr", "comprehension", "end1", "end2", "demoIntro", "demographics", "language", SendResults() , "bye" )
 //Sequence( "intro", "training", "production", "comprehension", "end", "demoIntro", "demographics", "language", SendResults() , "bye" )
 //Sequence("demographics", "language", SendResults() , "bye" )
-
-newTrial( "intro" ,    
+   
+newTrial( "intro" ,          
     newImage("consent", "consent.jpg") 
             .size(750,1000)   
         ,
@@ -45,10 +50,10 @@ Template( "trainInstr.csv" ,
     // Row will iteratively point to every row in myTable.csv
     row => newTrial( "trainInstr" ,
 
-        newImage("picture", "https:" + row.Picture)
-            .size(750,562)
+        newImage("picture", "https:" + row.Picture)   
+            .size(960,540)
         ,
-        newCanvas("canvas", 750,562)
+        newCanvas("canvas", 960,540)
             .center()
             .add( 0,0 , getImage("picture") )
             .print()
@@ -71,10 +76,12 @@ Template( "training.csv" ,
         .size(700, 395)
 ,   
     newImage("symbol", "https:" + row.Symbol)
-        .size(400,110)
+        .size(405,110)
 ,
-    newText("phrase","<p style=font-size:22px;>"+row.Phrase+"</p>")
-, 
+    newText("phrase","<p style=font-size:22px;><i>"+row.Phrase2+"</i></p>")
+,    
+    newText("phrase2","<p style=font-size:22px;>"+row.Phrase+"</p>")   
+,          
     newImage("EventImage1", "https:" + row.EventImage1)
             .size(700, 395)
             
@@ -84,37 +91,35 @@ Template( "training.csv" ,
 ,   newImage("EventImage3", "https:" + row.EventImage3)
             .size(700, 395)     
 ,
-    newCanvas('trainvid', 700,495)
+    newCanvas('trainvid', 700,595) 
         .center()
+        .print()
+,
+    getCanvas('trainvid')
         .add(3,0, getImage("EventImage1"))
         .print()
 ,
-        newTimer("wait1", 4000).start().wait()
-        .remove(getImage("EventImage1"))
+        newTimer("wait2", 4000).start().wait()       
+        .remove(getImage("EventImage1"))   
 ,
     getCanvas('trainvid')
-        .add(3,0, getImage("EventImage2"))
-        .print()
-,
-        newTimer("wait2", 4000).start().wait()
-        .remove(getImage("EventImage2"))
-,
-    getCanvas('trainvid')
-        .add(3,0, getImage("EventImage3"))     
-        .print()
-,
-        newTimer("wait3", 10).start().wait()
-        .remove(getImage("EventImage3"))               
-,
+        .add(3,0, getImage("EventImage2"))                  
+        .add(0,400, getText("phrase"))         
+        .print()     
+,          
+        newTimer("wait3", 6000).start().wait()      
+,    
     getCanvas('trainvid') 
+        .remove(getImage("EventImage2"))   
+        .remove(getText("phrase"))
         .add(3, 0, getImage("EventImage3"))         
         .add(275,360, getImage("symbol"))
-        .add(300, 405, getText("phrase"))
+        .add(300, 405, getText("phrase2"))
         .print()              
-,
+,         
         newTimer("wait4", 7000)
-            .start()         
-            .wait()
+            .start()             
+            .wait() 
 
 ).setOption("hideProgressBar",true)
     .log("ID", getVar("ID")) 
@@ -160,7 +165,9 @@ Template( "production.csv" ,
     newImage("symbol", "https:" + row.Symbol)
         .size(400,110)
 ,
-    newText("phrase","<p style=font-size:20px;>"+row.Phrase+"</p>")
+    newText("phrase3","<p style=font-size:20px;><i>"+row.Phrase2+"</i></p>")
+,
+    newText("phrase4","<p style=font-size:22px;>"+row.Phrase+"</p>")
 ,
     newImage("EventImage4", "https:" + row.EventImage1)
             .size(700, 395)
@@ -171,7 +178,7 @@ Template( "production.csv" ,
 ,   newImage("EventImage6", "https:" + row.EventImage3)
             .size(700, 395)
 ,
-   newCanvas('prodvid', 700,495)
+    newCanvas('prodvid', 700,495)
         .center()
         .add(3,0, getImage("EventImage4"))
         .print()
@@ -183,20 +190,21 @@ Template( "production.csv" ,
         .add(3,0, getImage("EventImage5"))
         .print()
 ,
+    getCanvas('prodvid')
+        .add(0, 405, getText("phrase3"))
+,
         newTimer("wait6", 4000).start().wait()
-        .remove(getImage("EventImage5"))
 ,
     getCanvas('prodvid')
-        .add(3,0, getImage("EventImage6"))
-        .print()       
+        .remove(getImage("EventImage5"))
+        .remove(getText("phrase3"))
 ,
         newTimer("wait7", 10).start().wait()
-        .remove(getImage("EventImage6"))       
 ,
     getCanvas('prodvid') 
         .add(3, 0, getImage("EventImage6"))    
         .add(275,360, getImage("symbol"))
-        .add(300, 405, getText("phrase"))
+        .add(300, 405, getText("phrase4"))
         .print()              
 ,
         newTimer("wait8", 7000)
@@ -292,7 +300,9 @@ Template( "comprehension.csv" ,
     newImage("symbol", "https:" + row.Symbol)
         .size(400,110)  
 ,
-    newText("phrase","<p style=font-size:22px;>"+row.Phrase+"</p>")
+    newText("phrase5","<p style=font-size:22px;><i>"+row.Phrase2+"</i></p>")
+,
+    newText("phrase6","<p style=font-size:22px;>"+row.Phrase+"</i></p>")      
 ,              
     newImage("EventImage7", "https:" + row.EventImage1)
             .size(700, 395)
@@ -303,7 +313,7 @@ Template( "comprehension.csv" ,
 ,   newImage("EventImage9", "https:" + row.EventImage3)
             .size(700, 395)
 ,
-   newCanvas('compvid', 700,495)
+    newCanvas('compvid', 700,495)
         .center()
         .add(3,0, getImage("EventImage7"))
         .print()
@@ -315,12 +325,18 @@ Template( "comprehension.csv" ,
         .add(3,0, getImage("EventImage8"))
         .print()
 ,
+    getCanvas("compvid")     
+        .add(0, 405, getText("phrase5"))
+        .print()
+,
         newTimer("wait6", 4000).start().wait()
-        .remove(getImage("EventImage8"))
+ 
 ,
     getCanvas('compvid')
+        .remove(getImage("EventImage8"))
+        .remove(getText("phrase5"))
         .add(3,0, getImage("EventImage9"))
-        .print()       
+        .print()            
 ,
         newTimer("wait7", 10).start().wait()
         .remove(getImage("EventImage9"))          
@@ -328,8 +344,10 @@ Template( "comprehension.csv" ,
     getCanvas('compvid')
         .add(3, 0, getImage("EventImage9"))   
         .add(275,360, getImage("symbol"))
-        .add(300, 405, getText("phrase"))
-        .print()      
+        .add(300, 405, getText("phrase6"))
+        .print()        
+,
+         newTimer("wait77", 3000).start().wait()
 ,
     newText("<p style=font-size:18px;>Was <strong>ga</strong> used correctly? Please respond either <strong>Yes</strong> or <strong>No</strong> below.</p>")
         .center()
@@ -337,7 +355,7 @@ Template( "comprehension.csv" ,
 ,
     newTextInput("comprehensionResp")
         .settings.log() 
-        .center()
+        .center()   
         .print()    
 ,
     newVar("compResp")
@@ -358,7 +376,7 @@ Template( "comprehension.csv" ,
             .remove()
 ,
         getTextInput("comprehensionResp")
-        .test.text(/[^\s]/)
+        .test.text(/[^\s]/)    
             .success()
             .failure(newText("TimedOut", "Please type your answer in the field above, then press ENTER").color("red").bold().print()
                             .log()
@@ -557,12 +575,12 @@ newTrial( "language",
         .print()
         .log()
 ,
-    getButton("finished")
+    getButton("finished")          
         .wait()
 ).setOption("hideProgressBar",true)
     .log("ID", getVar("ID")
 )
-    
+        
 newTrial( "bye" ,
     newText("<p style=font-size:18px;>Thank you for participating!</p>" +
             "<p style=font-size:18px;>Please copy and paste the following code on MTurk to receive credit:</p>" +
