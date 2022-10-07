@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+=======
+\// This is a simple demo script, feel free to edit or delete it
+// Find a tutorial and the list of availalbe elements at:
+// https://www.pcibex.net/documentation/
+//Updated 10/31/2021
+
+>>>>>>> Stashed changes
 PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
@@ -73,7 +81,7 @@ Template( "training.csv" ,
     newImage("symbol", "https:" + row.Symbol)
         .size(405,110)
 ,
-    newText("phrase","<p style=font-size:22px;><i>"+row.Phrase2+"</i></p>")
+    newText("phrase","<p style=font-size:25px;>"+row.Phrase2+"</p>")
 ,    
     newText("phrase2","<p style=font-size:22px;>"+row.Phrase+"</p>")   
 ,          
@@ -99,7 +107,7 @@ Template( "training.csv" ,
 ,
     getCanvas('trainvid')
         .add(3,0, getImage("EventImage2"))                  
-        .add(0,400, getText("phrase"))         
+        .add("center at 50%",400, getText("phrase"))         
         .print()     
 ,          
         newTimer("wait3", 6000).start().wait()      
@@ -108,8 +116,8 @@ Template( "training.csv" ,
         .remove(getImage("EventImage2"))   
         .remove(getText("phrase"))
         .add(3, 0, getImage("EventImage3"))         
-        .add(275,360, getImage("symbol"))
-        .add(300, 405, getText("phrase2"))
+        .add(275,300, getImage("symbol"))
+        .add(300, 345, getText("phrase2"))
         .print()              
 ,         
         newTimer("wait4", 7000)
@@ -160,7 +168,7 @@ Template( "production.csv" ,
     newImage("symbol", "https:" + row.Symbol)
         .size(400,110)
 ,
-    newText("phrase3","<p style=font-size:20px;><i>"+row.Phrase2+"</i></p>")
+    newText("phrase3","<p style=font-size:25px;>"+row.Phrase2+"</p>")
 ,
     newText("phrase4","<p style=font-size:22px;>"+row.Phrase+"</p>")
 ,
@@ -186,9 +194,9 @@ Template( "production.csv" ,
         .print()
 ,
     getCanvas('prodvid')
-        .add(0, 405, getText("phrase3"))
+        .add("center at 50%", 405, getText("phrase3"))
 ,
-        newTimer("wait6", 4000).start().wait()
+        newTimer("wait6", 6000).start().wait()
 ,
     getCanvas('prodvid')
         .remove(getImage("EventImage5"))
@@ -198,8 +206,8 @@ Template( "production.csv" ,
 ,
     getCanvas('prodvid') 
         .add(3, 0, getImage("EventImage6"))    
-        .add(275,360, getImage("symbol"))
-        .add(300, 405, getText("phrase4"))
+        .add(275,300, getImage("symbol"))
+        .add(300, 345, getText("phrase4"))
         .print()              
 ,
         newTimer("wait8", 7000)
@@ -295,7 +303,7 @@ Template( "comprehension.csv" ,
     newImage("symbol", "https:" + row.Symbol)
         .size(400,110)  
 ,
-    newText("phrase5","<p style=font-size:22px;><i>"+row.Phrase2+"</i></p>")
+    newText("phrase5","<p style=font-size:25px;>"+row.Phrase2+"</p>")
 ,
     newText("phrase6","<p style=font-size:22px;>"+row.Phrase+"</i></p>")      
 ,              
@@ -324,7 +332,7 @@ Template( "comprehension.csv" ,
         .add(0, 405, getText("phrase5"))
         .print()
 ,
-        newTimer("wait6", 4000).start().wait()
+        newTimer("wait6", 6000).start().wait()
  
 ,
     getCanvas('compvid')
@@ -338,8 +346,8 @@ Template( "comprehension.csv" ,
 ,
     getCanvas('compvid')
         .add(3, 0, getImage("EventImage9"))   
-        .add(275,360, getImage("symbol"))
-        .add(300, 405, getText("phrase6"))
+        .add(275,300, getImage("symbol"))
+        .add(300, 345, getText("phrase6"))
         .print()        
 ,
          newTimer("wait77", 3000).start().wait()
