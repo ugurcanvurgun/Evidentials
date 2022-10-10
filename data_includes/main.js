@@ -67,9 +67,6 @@ Template( "training.csv" ,
             .start()
             .wait()
 ,
-    newImage("speaker", row.SpeakerImage)   
-        .size(700, 395)
-,   
     newImage("symbol", "https:" + row.Symbol)
         .size(405,110)
 ,
@@ -153,9 +150,6 @@ Template( "production.csv" ,
     newTimer("preTrial", 250)
             .start()
             .wait()
-,
-    newImage("speaker2", row.SpeakerImage)
-        .size(700, 395)      
 ,
     newImage("symbol", "https:" + row.Symbol)
         .size(400,110)
@@ -288,9 +282,6 @@ Template( "comprehension.csv" ,
     newTimer("preTrial", 250)
             .start()
             .wait()
-,
-    newImage("speaker3", row.SpeakerImage)
-        .size(700, 395)
 ,       
     newImage("symbol", "https:" + row.Symbol)
         .size(400,110)  
@@ -321,7 +312,7 @@ Template( "comprehension.csv" ,
         .print()
 ,
     getCanvas("compvid")     
-        .add(0, 405, getText("phrase5"))
+        .add("center at 50%", 405, getText("phrase5"))
         .print()
 ,
         newTimer("wait6", 6000).start().wait()
